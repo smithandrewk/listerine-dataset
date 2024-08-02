@@ -1,0 +1,35 @@
+html,body,.main_app {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+H1 {
+    text-align: center;
+}
+.main_app {
+    background-color: rgb(249, 218, 144);
+    display: flex;
+    flex-direction: column;
+}
+
+.main_panel {
+    flex: 1;
+    display: flex;
+}
+
+.sidebar_panel {
+    flex: 1;
+    background-color: rgb(241, 241, 241);
+}
+
+.graph_panel {
+    flex: 10;
+    background-color: rgb(255, 255, 255);
+}
+
+#acceleration-graph {
+    height: 100%;
+}
