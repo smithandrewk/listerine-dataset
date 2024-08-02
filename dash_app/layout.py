@@ -2,6 +2,12 @@
 from dash import html, dcc
 
 def create_layout(participant_options, recording_options):
+    participant_options = [{'label': str(participant), 'value': participant} for participant in participant_options]
+    recording_options = [{'label': str(recording), 'value': recording} for recording in recording_options]
+
+    initial_participant = participant_options[0]['value'] if participant_options else None
+    initial_recording = recording_options[0]['value'] if recording_options else None
+
     return html.Div(
         className='main_app',
         children=[
@@ -16,14 +22,14 @@ def create_layout(participant_options, recording_options):
                                 className="participant_dropdown_group",
                                 children=[
                                     html.H3("Participant ID"),
-                                    dcc.Dropdown(options=participant_options, id='participant-dropdown')
+                                    dcc.Dropdown(options=participant_options, value=initial_participant, id='participant-dropdown')
                                 ]
                             ),
                             html.Div(
                                 className="recording_dropdown_group",
                                 children=[
                                     html.H3("Recording ID"),
-                                    dcc.Dropdown(options=recording_options, id='recording-dropdown')
+                                    dcc.Dropdown(options=recording_options, value=initial_recording, id='recording-dropdown')
                                 ]
                             )
                         ]
