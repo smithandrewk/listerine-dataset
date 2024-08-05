@@ -3,15 +3,15 @@ import dash
 from dash import html, dcc
 from dash.dependencies import Input, Output
 from layout import create_layout
-from lib.utils import load_data
+from lib.utils import load_data,DATA_DIR
 import json
 import plotly.express as px
 
 app = dash.Dash(__name__)
 
-DATA_DIR = '..'
 # TODO: load all data at beginning, or at least lazy load all recording for selected participant and also all 0 recordings for each aprticipant
 participant_ids = sorted([int(dir) for dir in os.listdir(f'{DATA_DIR}/4_cropped')])
+print(participant_ids)
 recordings = sorted([int(file.replace('.csv','')) for file in os.listdir(f'{DATA_DIR}/4_cropped/0') if file.endswith('.csv')])
 
 app.layout = create_layout(participant_ids, recordings)
@@ -45,7 +45,7 @@ def user_changed_recording_dropdown_selection(participant,recording):
     return fig
 
 def create_figure(df,labels):
-    fig = px.line(df, x='timestamp', y=['x'])
+    fig = px.line(df, x='timestamp', y=['x','y','z'])
 
     # Adding rectangles for labels
     for arm in labels:
